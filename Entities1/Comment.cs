@@ -1,4 +1,4 @@
-namespace Entities
+namespace Entities1
 {
     public class Comment
     {
@@ -7,4 +7,4 @@ namespace Entities
         public int postId { get; set; }
         public int userId { get; set; }
     }
-} 
+}
