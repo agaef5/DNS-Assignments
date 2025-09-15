@@ -1,6 +1,6 @@
-using Entities1;
+using Entities;
 
-namespace Repository1;
+namespace Repository;
 
 public interface ICommentRepository 
 { 

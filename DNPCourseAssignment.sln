@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InMemoryRepositories1", "InMemoryRepositories1\InMemoryRepositories1.csproj", "{B4EC72B2-DD52-4529-88D9-AA1A39622DC1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InMemoryRepositories", "InMemoryRepositories\InMemoryRepositories.csproj", "{B4EC72B2-DD52-4529-88D9-AA1A39622DC1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{D50F3301-A611-4E59-8B81-EA4B1A283702}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities1", "Entities1\Entities1.csproj", "{E3046392-1453-4669-8BEF-A07F7A8CEC98}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{E3046392-1453-4669-8BEF-A07F7A8CEC98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository1", "Repository1\Repository1.csproj", "{7DA10DAF-AC8E-4781-BDF7-0DB932D0F762}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{7DA10DAF-AC8E-4781-BDF7-0DB932D0F762}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

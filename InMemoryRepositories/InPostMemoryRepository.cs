@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices.Marshalling;
-using Entities1;
-using Repository1;
+using Entities;
+using Repository;
 
-namespace InMemoryRepositories1;
+namespace InMemoryRepositories;
 
 public class InPostMemoryRepository : IPostRepository
 {

@@ -1,4 +1,4 @@
-namespace Entities1
+namespace Entities
 {
     public class Comment
     {
