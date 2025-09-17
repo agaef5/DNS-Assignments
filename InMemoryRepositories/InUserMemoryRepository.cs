@@ -5,45 +5,46 @@ namespace InMemoryRepositories;
 
 public class InUserMemoryRepository : IUserRepository
 {
-    private List<User> users;
+    private readonly List<User> _users = new();
     
     public Task<User> AddAsync(User user)
     {
-        user.id = users.Any() ? users.Max(u => u.id) + 1 : 1;
+        user.Id = _users.Any() ? _users.Max(u => u.Id) + 1 : 1;
+        _users.Add(user);
         return Task.FromResult(user);
     }
 
     public Task UpdateAsync(User user)
     {
-        User? existingUser = getUser(user.id);
+        User? existingUser = GetUser(user.Id);
 
-        users.Remove(existingUser);
-        users.Add(user);
+        _users.Remove(existingUser);
+        _users.Add(user);
 
         return Task.CompletedTask;
     }
 
     public Task DeleteAsync(int id)
     {
-        User? userToRemove = getUser(id);
+        User? userToRemove = GetUser(id);
 
-        users.Remove(userToRemove);
+        _users.Remove(userToRemove);
         return Task.CompletedTask;
     }
 
     public Task<User> GetSingleAsync(int id)
     {
-        return Task.FromResult(getUser(id));
+        return Task.FromResult(GetUser(id));
     }
 
     public IQueryable<User> GetMany()
     {
-        return users.AsQueryable();
+        return _users.AsQueryable();
     }
 
-    private User getUser(int id)
+    private User GetUser(int? id)
     {
-        User? user = users.SingleOrDefault(u => u.id == id);
+        User? user = _users.SingleOrDefault(u => u.Id == id);
         if (user is null)
         {
             throw new InvalidOperationException($"User with ID '{id}' not found");
