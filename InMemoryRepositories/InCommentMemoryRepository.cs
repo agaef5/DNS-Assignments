@@ -5,7 +5,7 @@ namespace InMemoryRepositories;
 
 public class InCommentMemoryRepository : ICommentRepository
 {
-    private List<Comment> comments;
+    private List<Comment> comments = new();
     
     public Task<Comment> AddAsync(Comment comment)
     {
@@ -16,6 +16,11 @@ public class InCommentMemoryRepository : ICommentRepository
 
     public Task UpdateAsync(Comment comment)
     {
+        if (comment.id == null)
+        {
+            Console.WriteLine("Comment does not have id.");
+            return Task.CompletedTask;
+        }
         Comment existingComment = getComment(comment.id);
         comments.Remove(existingComment);
         
@@ -41,7 +46,7 @@ public class InCommentMemoryRepository : ICommentRepository
         return comments.AsQueryable();
     }
 
-    private Comment getComment(int id)
+    private Comment getComment(int? id)
     {
         Comment? comment = comments.SingleOrDefault(p => p.id == id);
         if (comment is null)

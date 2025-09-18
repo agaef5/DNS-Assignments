@@ -6,11 +6,12 @@ namespace InMemoryRepositories;
 
 public class InPostMemoryRepository : IPostRepository
 {
-    private List<Post> posts;
+    private List<Post> posts = new ();
     
     public Task<Post> AddAsync(Post post)
     {
-        post.id = posts.Any() ? posts.Max(p => p.id) + 1 : 1; posts.Add(post);
+        post.id = posts.Any()? posts.Max(p => p.id) + 1 : 1;
+        posts.Add(post);
         return Task.FromResult(post);
     }
 

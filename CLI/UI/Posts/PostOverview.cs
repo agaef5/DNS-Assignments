@@ -3,9 +3,11 @@ using Repository;
 
 namespace CLI.UI.Posts;
 
-public class PostOverview(IPostRepository postRepository)
+public class PostOverview(IPostRepository postRepository,IUserRepository userRepository, ICommentRepository commentRepository)
 {
     private IPostRepository _postRepository = postRepository;
+    private IUserRepository _userRepository = userRepository;
+    private ICommentRepository _commentRepository = commentRepository;
 
     public async Task DisplayPostOverviewAsync()
     {
@@ -38,17 +40,17 @@ public class PostOverview(IPostRepository postRepository)
 
     private async Task DisplayPostAsync(Post post)
     {
-        Console.Write("-----------------------\n" +
-                      "postID: " + post.id + "userID: " + post.userId +
+        Console.Write("postID: " + post.id + ", userID: " + post.userId +
                       "\n-----------------------\n" +
                       post.title +
                       "\n-----------------------\n" +
-                      post.body + "\n");
+                       "\n \n");
         
     }
 
     private async Task DisplayPostDetailsAsync(int postId)
     {
-        
+        SinglePostView singlePostView = new SinglePostView(postRepository, userRepository, commentRepository);
+        await singlePostView.DisplaySinglePostAsync(postId);
     }
 }

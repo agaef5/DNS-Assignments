@@ -1,10 +1,10 @@
 namespace Entities;
 
-public class Post
+public class Post(int? id, string title, string body, int userId)
 {
-    public int id { get; set; }
-    public string title { get; set; }
-    public string body { get; set; }
-    public int userId { get; set; }
+    public int? id { get; set; } = id;
+    public string title { get; set; } = title;
+    public string body { get; set; } = body;
+    public int userId { get; set; } = userId;
 }
 
