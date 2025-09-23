@@ -111,6 +111,4 @@ public class SinglePostView (IPostRepository postRepository, IUserRepository use
         Comment newComment = new Comment(null, body, postId, userId);
         await _commentRepository.AddAsync(newComment);
     }
-    
-
 }
