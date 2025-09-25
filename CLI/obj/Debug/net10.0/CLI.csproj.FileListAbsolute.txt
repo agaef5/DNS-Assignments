@@ -10,10 +10,8 @@ C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\bin\Debug\net10.0\CLI.runti
 C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\bin\Debug\net10.0\CLI.dll
 C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\bin\Debug\net10.0\CLI.pdb
 C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\bin\Debug\net10.0\Entities.dll
-C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\bin\Debug\net10.0\InMemoryRepositories.dll
 C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\bin\Debug\net10.0\Repository.dll
 C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\bin\Debug\net10.0\Entities.pdb
-C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\bin\Debug\net10.0\InMemoryRepositories.pdb
 C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\bin\Debug\net10.0\Repository.pdb
 C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\obj\Debug\net10.0\CLI.csproj.Up2Date
 C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\obj\Debug\net10.0\CLI.dll
@@ -21,3 +19,5 @@ C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\obj\Debug\net10.0\refint\CL
 C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\obj\Debug\net10.0\CLI.pdb
 C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\obj\Debug\net10.0\CLI.genruntimeconfig.cache
 C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\obj\Debug\net10.0\ref\CLI.dll
+C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\bin\Debug\net10.0\FileRepositories.dll
+C:\Users\agafu\RiderProjects\DNPCourseAssignment\CLI\bin\Debug\net10.0\FileRepositories.pdb

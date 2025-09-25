@@ -21,7 +21,7 @@ public class InCommentMemoryRepository : ICommentRepository
             Console.WriteLine("Comment does not have id.");
             return Task.CompletedTask;
         }
-        Comment existingComment = getComment(comment.id);
+        Comment existingComment = GetComment(comment.id);
         comments.Remove(existingComment);
         
         comments.Add(comment);
@@ -30,7 +30,7 @@ public class InCommentMemoryRepository : ICommentRepository
 
     public Task DeleteAsync(int id)
     {
-        Comment commentToRemove = getComment(id);
+        Comment commentToRemove = GetComment(id);
         comments.Remove(commentToRemove);
 
         return Task.CompletedTask;
@@ -38,7 +38,7 @@ public class InCommentMemoryRepository : ICommentRepository
 
     public Task<Comment> GetSingleAsync(int id)
     {
-        return Task.FromResult(getComment(id));
+        return Task.FromResult(GetComment(id));
     }
 
     public IQueryable<Comment> GetMany()
@@ -46,7 +46,7 @@ public class InCommentMemoryRepository : ICommentRepository
         return comments.AsQueryable();
     }
 
-    private Comment getComment(int? id)
+    private Comment GetComment(int? id)
     {
         Comment? comment = comments.SingleOrDefault(p => p.id == id);
         if (comment is null)

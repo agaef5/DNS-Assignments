@@ -2,21 +2,6 @@
   "version": 3,
   "targets": {
     "net10.0": {
-      "CLI/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v10.0",
-        "dependencies": {
-          "Entities": "1.0.0",
-          "InMemoryRepositories": "1.0.0",
-          "Repository": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/CLI.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/CLI.dll": {}
-        }
-      },
       "Entities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -25,20 +10,6 @@
         },
         "runtime": {
           "bin/placeholder/Entities.dll": {}
-        }
-      },
-      "InMemoryRepositories/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v10.0",
-        "dependencies": {
-          "Entities": "1.0.0",
-          "Repository": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/InMemoryRepositories.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/InMemoryRepositories.dll": {}
         }
       },
       "Repository/1.0.0": {
@@ -57,20 +28,10 @@
     }
   },
   "libraries": {
-    "CLI/1.0.0": {
-      "type": "project",
-      "path": "../CLI/CLI.csproj",
-      "msbuildProject": "../CLI/CLI.csproj"
-    },
     "Entities/1.0.0": {
       "type": "project",
       "path": "../Entities/Entities.csproj",
       "msbuildProject": "../Entities/Entities.csproj"
-    },
-    "InMemoryRepositories/1.0.0": {
-      "type": "project",
-      "path": "../InMemoryRepositories/InMemoryRepositories.csproj",
-      "msbuildProject": "../InMemoryRepositories/InMemoryRepositories.csproj"
     },
     "Repository/1.0.0": {
       "type": "project",
@@ -80,7 +41,6 @@
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "CLI >= 1.0.0",
       "Entities >= 1.0.0",
       "Repository >= 1.0.0"
     ]
@@ -110,9 +70,6 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\agafu\\RiderProjects\\DNPCourseAssignment\\CLI\\CLI.csproj": {
-              "projectPath": "C:\\Users\\agafu\\RiderProjects\\DNPCourseAssignment\\CLI\\CLI.csproj"
-            },
             "C:\\Users\\agafu\\RiderProjects\\DNPCourseAssignment\\Entities\\Entities.csproj": {
               "projectPath": "C:\\Users\\agafu\\RiderProjects\\DNPCourseAssignment\\Entities\\Entities.csproj"
             },
