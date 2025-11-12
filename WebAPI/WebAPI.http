@@ -1,4 +1,4 @@
-@WebAPI_HostAddress = http://localhost:5213
+@WebAPI_HostAddress = http://localhost:7005
 
 GET {{WebAPI_HostAddress}}/DNPAssignment/
 Accept: application/json
