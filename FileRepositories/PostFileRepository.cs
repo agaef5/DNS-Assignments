@@ -57,10 +57,10 @@ public class PostFileRepository : IPostRepository
         return GetPost(posts, id);
     }
 
-    public IQueryable<Post> GetMany()
+    public async Task<List<Post>> GetMany()
     {
-        List<Post> posts =  ReadPostsAsync().Result;
-        return posts.AsQueryable();
+        List<Post> posts = await ReadPostsAsync();
+        return posts;
     }
     
     private static Post GetPost(List<Post> posts, int? id)

@@ -1,4 +1,6 @@
 using DTOs;
+using DTOs.Comments;
+using DTOs.Posts;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Repository;
@@ -28,30 +30,64 @@ public class PostsController(IPostRepository postRepository, ICommentRepository 
         }
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<PostDto>> GetPostById([FromBody] int id)
+    [HttpGet]
+    public async Task<ActionResult<List<PostDto>>> GetAllPosts()
     {
         try
         {
-            Post post = await postRepository.GetSingleAsync(id);
-            var user = await userRepository.GetSingleAsync(post.UserId);
+            List<Post> posts = await postRepository.GetMany();
             List<Comment> comments = await commentRepository.GetMany();
-            List<CommentDto> commentDtos = new List<CommentDto>();
-            foreach (Comment comment in comments)
+            
+            List<PostDto> postDtos = new List<PostDto>();
+            foreach (var post in posts)
             {
-                CommentDto dto = new CommentDto(comment.Id, comment.Body,
-                    comment.PostId, comment.UserId);
-                commentDtos.Add(dto);
+                postDtos.Add(await GetPostDtoWithComments(post, comments));
             }
 
-            PostDto postDto = new PostDto(post.Id, post.Title, post.Body,
-                post.UserId, user.Username, commentDtos);
-            return postDto;
+            return postDtos;
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             return StatusCode(500, e.Message);
         }
+    }
+    
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<PostDto>> GetPostById([FromBody] int id)
+    {
+        try
+        {
+            Post post = await postRepository.GetSingleAsync(id);
+            var comments = await commentRepository.GetMany();
+            
+            return await GetPostDtoWithComments(post, comments);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, e.Message);
+        }
+    }
+
+    private async Task<PostDto> GetPostDtoWithComments(Post post, List<Comment> comments)
+    {
+        User postUser = await userRepository.GetSingleAsync(post.UserId);
+        PostDto dto = Post.ToDto(post, postUser.Username,
+            new List<CommentDto>());
+        
+        foreach (Comment comment in comments)
+        {
+            if (comment.PostId == dto.Id)
+            {
+                User commentUser = await 
+                    userRepository.GetSingleAsync(comment.UserId);
+                CommentDto commentDto =
+                    Comment.ToDto(comment, commentUser.Username);
+                dto.Comments.Add(commentDto);
+            }
+        }
+        return dto;
     }
 }

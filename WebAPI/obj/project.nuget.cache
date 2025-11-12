@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "yo/OeoB2Gqk=",
+  "dgSpecHash": "eqO0LBWVS3A=",
   "success": true,
   "projectFilePath": "C:\\Users\\agafu\\RiderProjects\\DNPCourseAssignment\\WebAPI\\WebAPI.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\agafu\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.0-rc.1.25451.107\\microsoft.aspnetcore.openapi.10.0.0-rc.1.25451.107.nupkg.sha512",
-    "C:\\Users\\agafu\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+    "C:\\Users\\agafu\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.10\\microsoft.aspnetcore.openapi.9.0.10.nupkg.sha512",
+    "C:\\Users\\agafu\\.nuget\\packages\\microsoft.extensions.apidescription.server\\9.0.10\\microsoft.extensions.apidescription.server.9.0.10.nupkg.sha512",
+    "C:\\Users\\agafu\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
   ],
   "logs": []
 }

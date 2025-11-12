@@ -2,9 +2,22 @@
   "version": 3,
   "targets": {
     "net10.0": {
+      "DTOs/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/DTOs.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DTOs.dll": {}
+        }
+      },
       "Entities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "DTOs": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Entities.dll": {}
         },
@@ -28,6 +41,11 @@
     }
   },
   "libraries": {
+    "DTOs/1.0.0": {
+      "type": "project",
+      "path": "../Shared/DTOs/DTOs.csproj",
+      "msbuildProject": "../Shared/DTOs/DTOs.csproj"
+    },
     "Entities/1.0.0": {
       "type": "project",
       "path": "../Entities/Entities.csproj",

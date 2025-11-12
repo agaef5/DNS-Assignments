@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\agafu\\RiderProjects\\DNPCourseAssignment\\DTOs\\DTOs.csproj": {}
+    "C:\\Users\\agafu\\RiderProjects\\DNPCourseAssignment\\Shared\\DTOs\\DTOs.csproj": {}
   },
   "projects": {
-    "C:\\Users\\agafu\\RiderProjects\\DNPCourseAssignment\\DTOs\\DTOs.csproj": {
+    "C:\\Users\\agafu\\RiderProjects\\DNPCourseAssignment\\Shared\\DTOs\\DTOs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\agafu\\RiderProjects\\DNPCourseAssignment\\DTOs\\DTOs.csproj",
+        "projectUniqueName": "C:\\Users\\agafu\\RiderProjects\\DNPCourseAssignment\\Shared\\DTOs\\DTOs.csproj",
         "projectName": "DTOs",
-        "projectPath": "C:\\Users\\agafu\\RiderProjects\\DNPCourseAssignment\\DTOs\\DTOs.csproj",
+        "projectPath": "C:\\Users\\agafu\\RiderProjects\\DNPCourseAssignment\\Shared\\DTOs\\DTOs.csproj",
         "packagesPath": "C:\\Users\\agafu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\agafu\\RiderProjects\\DNPCourseAssignment\\DTOs\\obj\\",
+        "outputPath": "C:\\Users\\agafu\\RiderProjects\\DNPCourseAssignment\\Shared\\DTOs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\agafu\\AppData\\Roaming\\NuGet\\NuGet.Config"

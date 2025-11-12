@@ -18,7 +18,7 @@ public class UserFileRepository : IUserRepository
     
     public async Task<User> AddAsync(string username, string password)
     {
-        List<User> users =  GetMany().ToList();
+        List<User> users =  await GetMany();
         
         int newId = users.Count > 0 ? users.Last().Id + 1 : 1;
 
@@ -32,7 +32,7 @@ public class UserFileRepository : IUserRepository
 
     public async Task UpdateAsync(User user)
     {
-        List<User> users =  GetMany().ToList();
+        List<User> users =  await GetMany();
 
         User existingUser = GetUser(users, user.Id);
         users.Remove(existingUser);
@@ -43,7 +43,7 @@ public class UserFileRepository : IUserRepository
 
     public async Task DeleteAsync(int id)
     {        
-        List<User> users =  GetMany().ToList();
+        List<User> users = await GetMany();
 
         User existingUser = GetUser(users, id);
         users.Remove(existingUser);
@@ -53,17 +53,17 @@ public class UserFileRepository : IUserRepository
 
     public async Task<User> GetSingleAsync(int id)
     {
-        List<User> users =  GetMany().ToList();
+        List<User> users =  await GetMany();
 
         User existingUser = GetUser(users, id);
 
         return existingUser;
     }
 
-    public IQueryable<User> GetMany()
+    public async Task<List<User>> GetMany()
     {
-        var users = ReadUsersAsync().Result;
-        return users.AsQueryable();
+        var users = await ReadUsersAsync();
+        return users;
     }
     
     private static User GetUser(List<User> users, int? id)
