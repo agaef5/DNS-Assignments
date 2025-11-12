@@ -7,7 +7,7 @@ builder.Services.AddControllers();
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddOpenApi("DNPassignment");
 
 builder.Services.AddScoped<IPostRepository, PostFileRepository>();
 builder.Services.AddScoped<IUserRepository, UserFileRepository>();
@@ -19,7 +19,7 @@ app.MapControllers();
 
 if (app.Environment.IsDevelopment())
 {
-   // some code here 
+   app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();
