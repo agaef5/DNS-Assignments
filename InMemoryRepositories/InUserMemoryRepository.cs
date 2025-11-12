@@ -7,9 +7,10 @@ public class InUserMemoryRepository : IUserRepository
 {
     private readonly List<User> _users = new();
     
-    public Task<User> AddAsync(User user)
+    public Task<User> AddAsync(string username, string password)
     {
-        user.Id = _users.Any() ? _users.Max(u => u.Id) + 1 : 1;
+        int newId = _users.Any() ? _users.Max(u => u.Id) + 1 : 1;
+        User user = new User(newId, username, password);
         _users.Add(user);
         return Task.FromResult(user);
     }

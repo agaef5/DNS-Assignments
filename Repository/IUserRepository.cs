@@ -4,7 +4,7 @@ namespace Repository;
 
 public interface IUserRepository
 {
-    Task<User> AddAsync(User user); 
+    Task<User> AddAsync(string username, string password); 
     Task UpdateAsync(User user); 
     Task DeleteAsync(int id); 
     Task<User> GetSingleAsync(int id); 

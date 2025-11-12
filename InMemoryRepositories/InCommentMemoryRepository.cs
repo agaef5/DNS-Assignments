@@ -7,21 +7,20 @@ public class InCommentMemoryRepository : ICommentRepository
 {
     private List<Comment> comments = new();
     
-    public Task<Comment> AddAsync(Comment comment)
+    public Task<Comment> AddAsync(string body, int postId, int userId)
     {
-        comment.id = comments.Any() 
-            ? comments.Max(p => p.id) + 1 : 1; comments.Add(comment);
+        
+        int newId = comments.Any() 
+            ? comments.Max(p => p.Id) + 1 : 1;
+        Comment comment = new Comment(newId, body, postId, userId);
+        comments.Add(comment);
+        
         return Task.FromResult(comment);
     }
 
     public Task UpdateAsync(Comment comment)
     {
-        if (comment.id == null)
-        {
-            Console.WriteLine("Comment does not have id.");
-            return Task.CompletedTask;
-        }
-        Comment existingComment = GetComment(comment.id);
+        Comment existingComment = GetComment(comment.Id);
         comments.Remove(existingComment);
         
         comments.Add(comment);
@@ -41,14 +40,14 @@ public class InCommentMemoryRepository : ICommentRepository
         return Task.FromResult(GetComment(id));
     }
 
-    public IQueryable<Comment> GetMany()
+    public async Task<List<Comment>> GetMany()
     {
-        return comments.AsQueryable();
+        return comments;
     }
 
     private Comment GetComment(int? id)
     {
-        Comment? comment = comments.SingleOrDefault(p => p.id == id);
+        Comment? comment = comments.SingleOrDefault(p => p.Id == id);
         if (comment is null)
         {
             throw new InvalidOperationException($"Post with ID '{id}' not found");

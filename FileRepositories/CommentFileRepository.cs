@@ -16,12 +16,13 @@ public class CommentFileRepository : ICommentRepository
         }
     }
     
-    public async Task<Comment> AddAsync(Comment comment)
+    public async Task<Comment> AddAsync(string body, int postId, int userId)
     {
         List<Comment> comments = await ReadCommentsAsync();
         
-        int? maxId = comments.Count > 0 ? comments.Max(c => c.id) : 1;
-        comment.id = maxId + 1;
+        int maxId = comments.Count > 0 ? comments.Max(c => c.Id) + 1 : 1;
+
+        Comment comment = new Comment(maxId, body, postId, userId);
         comments.Add(comment);
 
         await WriteCommentsAsync(comments);
@@ -31,7 +32,7 @@ public class CommentFileRepository : ICommentRepository
     public async Task UpdateAsync(Comment comment)
     {
         List<Comment> comments = await ReadCommentsAsync();
-        Comment existingComment = GetComment(comments, comment.id);
+        Comment existingComment = GetComment(comments, comment.Id);
 
         comments.Remove(existingComment);
         comments.Add(comment);
@@ -57,15 +58,15 @@ public class CommentFileRepository : ICommentRepository
         return existingComment;
     }
 
-    public IQueryable<Comment> GetMany()
+    public async Task<List<Comment>> GetMany()
     {
-        var comments = ReadCommentsAsync().Result;
-        return comments.AsQueryable();
+        var comments = await ReadCommentsAsync();
+        return comments;
     }
     
     private static Comment GetComment(List<Comment> comments, int? id)
     {
-        var comment = comments.SingleOrDefault(p => p.id == id);
+        var comment = comments.SingleOrDefault(p => p.Id == id);
         return comment ?? throw new InvalidOperationException($"Comment with ID '{id}' not found");
     }
     

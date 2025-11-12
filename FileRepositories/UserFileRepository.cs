@@ -16,12 +16,13 @@ public class UserFileRepository : IUserRepository
         } 
     }
     
-    public async Task<User> AddAsync(User user)
+    public async Task<User> AddAsync(string username, string password)
     {
         List<User> users =  GetMany().ToList();
         
-        int? newId = users.Count > 0 ? users.Last().Id + 1 : 1;
-        user.Id = newId;
+        int newId = users.Count > 0 ? users.Last().Id + 1 : 1;
+
+        User user = new User(newId, username, password);
         
         users.Add(user);
         await WriteUsersAsync(users);

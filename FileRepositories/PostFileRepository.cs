@@ -16,12 +16,12 @@ public class PostFileRepository : IPostRepository
         }
     }
     
-    public async Task<Post> AddAsync(Post post)
+    public async Task<Post> AddAsync(string title, string body, int userId)
     {
         List<Post> posts = await ReadPostsAsync();
 
-        int? newId = posts.Count > 0 ? posts.Last().id + 1 : 1;
-        post.id = newId;
+        int newId = posts.Count > 0 ? posts.Last().Id + 1 : 1;
+        Post post = new Post(newId, title, body, userId);
         
         posts.Add(post);
 
@@ -33,7 +33,7 @@ public class PostFileRepository : IPostRepository
     {
         List<Post> posts = await ReadPostsAsync();
 
-        Post existingPost = GetPost(posts, post.id);
+        Post existingPost = GetPost(posts, post.Id);
         posts.Remove(existingPost);
         posts.Add(post);
 
@@ -65,7 +65,7 @@ public class PostFileRepository : IPostRepository
     
     private static Post GetPost(List<Post> posts, int? id)
     {
-        var post = posts.SingleOrDefault(p => p.id == id);
+        var post = posts.SingleOrDefault(p => p.Id == id);
         return post ?? throw new InvalidOperationException($"Post with ID '{id}' not found");
     }
     

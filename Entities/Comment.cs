@@ -1,10 +1,10 @@
 namespace Entities
 {
-    public class Comment(int? id, string body, int postId, int userId)
+    public class Comment(int id, string body, int postId, int userId)
     {
-        public int? id { get; set; } = id;
-        public string body { get; set; } = body;
-        public int postId { get; set; } = postId;
-        public int userId { get; set; } = userId;
+        public int Id { get; set; } = id;
+        public string Body { get; set; } = body;
+        public int PostId { get; set; } = postId;
+        public int UserId { get; set; } = userId;
     }
 }
