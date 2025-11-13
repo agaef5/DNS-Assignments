@@ -1,0 +1,49 @@
+
+<h3>Comment</h3>
+
+<div class="border-2 border-dark-subtle flex-column">
+    
+    <p @bind="Username" class="text-light"></p>
+    
+    <p @bind="Body" class=""></p>
+    
+    
+    @* @if (UserId != AuthUserId) *@
+    @* { *@
+    @*     <div> *@
+    @*         <button class="btn-primary" @bind="ShowReplyToComment" @onclick="ReplyToComment">Reply to comment</button> *@
+    @*      *@
+    @*         <p class="">Reply to {Username}'s comment:</p> *@
+    @*         <textarea @bind=""></textarea> *@
+    @*     </div> *@
+    @* *@
+    @* }  *@
+</div>
+
+@code {
+    [Parameter]
+    public int CommentId { get; set; }
+    
+    [Parameter]
+    public int UserId { get; set; }
+    
+    [Parameter]
+    public string? Username { get; set; }
+    
+    [Parameter]
+    public string? Body { get; set; }
+    
+    // public int AuthUserId { get; set; }
+
+    // private bool ShowReplyToComment { get; set; } = false;
+    
+    // private void ReplyToComment()
+    // {
+    //     
+    // }
+    //
+    // private void CreateNewCommentRequest()
+    // {
+    //     
+    // }
+}

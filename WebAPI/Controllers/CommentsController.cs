@@ -7,7 +7,7 @@ using Repository;
 namespace WebAPI.Controllers;
 
 [ApiController]
-[Route("controller")]
+[Route("[controller]")]
 public class CommentsController(ICommentRepository commentRepository, IUserRepository userRepository)
     : ControllerBase
 {

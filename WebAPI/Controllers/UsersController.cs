@@ -6,7 +6,7 @@ using Repository;
 namespace WebAPI.Controllers;
 
 [ApiController]
-[Route("controller")]
+[Route("[controller]")]
 public class UsersController(IUserRepository userRepository) : ControllerBase
 {
     [HttpPost]

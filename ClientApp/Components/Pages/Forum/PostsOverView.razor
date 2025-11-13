@@ -1,0 +1,114 @@
+@using ClientApp.Services.Post
+@using DTOs.Posts
+@using SuperSimpleBlazorModal
+@inject NavigationManager Navigation
+@inject IPostService PostService
+@page "/posts"
+<PageTitle>Posts</PageTitle>
+
+@if (PostDtos is null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <div class="flex-column">
+        @if (PostDtos == null || PostDtos.Count == 0)
+        {
+            <div>
+                <p>No posts here... Yet!</p>
+                <button @onclick="ShowCreatePostPopup">Create first post!</button>
+            </div>
+        }
+        else
+        {
+            <div class="flex-row py-2">
+                <h3> Create new discussion by creating a new post!</h3>
+                <button @onclick="ShowCreatePostPopup">New post</button>
+            </div>
+            
+            @foreach (var post in PostDtos)
+            {
+                <div @onclick="@(() => NavigateToSinglePost(post.Id))" style="cursor:pointer;" >
+                    <Post  PostId="@post.Id" UserId="@post.UserId" Body="@post.Body" Title="@post.Title"/>
+                </div>
+            }
+        }
+
+    </div>
+}
+
+<SimpleModal
+    @ref="_modalRef" 
+    OpenOnFirstRender="false">
+    <h1>Create new post</h1>
+    <div>
+        <p>Post title: </p>
+        <InputText @bind-Value="NewPostTitle"></InputText>
+                    
+        <p>Post:</p>
+        <InputTextArea @bind-Value="NewPostBody"></InputTextArea>
+                    
+        <button @onclick="CreateNewPost">Create post</button>
+    </div>
+    <button class="btn btn-secondary" @onclick="CloseModal">Close</button>>
+</SimpleModal>
+
+
+@code {
+    public List<PostDto>? PostDtos { get; set; }
+
+    private string NewPostTitle { get; set; } = "";
+    private string NewPostBody { get; set; } = "";
+    
+    private SimpleModal? _modalRef;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadPosts();
+    }
+
+    private async Task LoadPosts()
+    {
+        PostDtos = await PostService.GetAllPostsAsync();
+    }
+
+    private async Task ShowCreatePostPopup()
+    {
+        if(_modalRef is not null)
+        await _modalRef.ShowModal();
+    }
+
+    private async Task CreateNewPost()
+    {
+        if (string.IsNullOrWhiteSpace(NewPostTitle) || (string.IsNullOrWhiteSpace(NewPostBody)))
+            return;
+
+        // TODO: change to current user ID
+        var newPost = new CreatePostDto(NewPostTitle, NewPostBody, 1);
+        var created = await PostService.CreatePostAsync(newPost);
+        
+        PostDtos ??= new List<PostDto>();
+        PostDtos.Add(created);
+        
+        NewPostTitle = "";
+        NewPostBody = "";
+
+        if (_modalRef is not null)
+            await _modalRef.CloseModal();
+    }
+
+    private async Task CloseModal()
+    {
+        if (_modalRef is not null)
+        await _modalRef.CloseModal();
+    }
+
+    private void NavigateToSinglePost(int postId)
+    {
+        Navigation.NavigateTo($"/posts/{postId}");
+    }
+    
+}

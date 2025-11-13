@@ -8,7 +8,7 @@ using Repository;
 namespace WebAPI.Controllers;
 
 [ApiController]
-[Route("controller")]
+[Route("[controller]")]
 public class PostsController(IPostRepository postRepository, ICommentRepository commentRepository, IUserRepository userRepository) : ControllerBase
 {
     [HttpPost]
@@ -20,7 +20,7 @@ public class PostsController(IPostRepository postRepository, ICommentRepository 
             Post created = await postRepository.AddAsync(request.Title, request.Body, request.UserId);
             var user = await userRepository.GetSingleAsync(created.UserId);
             PostDto dto = new PostDto(created.Id, created.Title, created.Body,
-                created.UserId, user.Username, null);
+                created.UserId, user.Username, new List<CommentDto>());
             return Created($"posts/{dto.Id}", dto);
         }
         catch (Exception e)
@@ -55,7 +55,7 @@ public class PostsController(IPostRepository postRepository, ICommentRepository 
     
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<PostDto>> GetPostById([FromBody] int id)
+    public async Task<ActionResult<PostDto>> GetPostById(int id)
     {
         try
         {

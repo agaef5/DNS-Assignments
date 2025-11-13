@@ -1,0 +1,33 @@
+@using Components
+@using DTOs.Comments
+
+<div class="flex-column justify-content-around">
+    <div>
+        <div class="py-2">
+            @Body
+        </div>
+    </div>
+    <h2>@Title</h2>
+    <p class="">@Username</p>
+</div>
+
+@code {
+    [Parameter]
+    public int PostId { get; set; }
+    
+    [Parameter]
+    public int UserId { get; set; }
+    
+    [Parameter]
+    public required string Username { get; set; } 
+    
+    [Parameter]
+    public required string Title { get; set; }
+    
+    [Parameter]
+    public required string Body { get; set; }
+    
+    [Parameter]
+    public required List<CommentDto> CommentDtos { get; set; }
+    
+} 

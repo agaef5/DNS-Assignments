@@ -1,0 +1,62 @@
+@using ClientApp.Services.Comment
+@using ClientApp.Services.Post
+@using DTOs.Comments
+@using DTOs.Posts
+@inject IPostService PostService;
+@inject ICommentService CommentService;
+@page "/posts/{Id:int}"
+
+
+@if (PostDto is null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <div>
+        <Post PostId="Id" UserId="@PostDto.UserId"/>
+
+        <div class="flex-column row border-dark-subtle">
+            <InputText @bind="NewComment"></InputText>
+            <button class="w-25" @onclick="CreateNewComment">Comment</button>
+        </div>
+
+        @foreach (var comment in CommentDtos)
+        {
+            <Comment CommentId="@comment.Id" UserId="comment.UserId"
+                     Username="@comment.Username" Body="@comment.Body"/>
+        }
+    </div> 
+}
+
+
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private PostDto? PostDto { get; set; }
+    private List<CommentDto>? CommentDtos { get; set; } = new();
+    private string NewComment { get; set; } = "";
+
+    protected override async Task OnParametersSetAsync()
+    {
+        PostDto = await PostService.GetPostByIdAsync(Id);
+        CommentDtos = PostDto.Comments;
+    }
+
+    private async Task CreateNewComment()
+    {
+        if (string.IsNullOrWhiteSpace(NewComment))
+            return;
+
+        var newCommentDto = new CreateCommentDto(NewComment, Id, 1);
+        
+        CommentDto created = await CommentService.CreateCommentAsync(newCommentDto);
+
+        CommentDtos.Add(created);
+        NewComment = string.Empty;
+    }
+
+}

@@ -1,0 +1,35 @@
+@page "/register"
+@using ClientApp.Services.User
+@using DTOs
+@rendermode InteractiveServer
+
+<PageTitle>Create account</PageTitle>
+
+<p>Username:</p>
+<input class="username-field" @bind="username">
+
+<p>Password:</p>
+<input class="password-field" @bind="password">
+
+<br/>
+
+<button class="btn btn-outline-primary" @onclick="SendLoginRequest">Sign in</button>
+
+<a class="link-underline" href="login">Login here</a>
+
+@code{
+    
+    private AuthUserDto _userDto;
+    private string username = "";
+    private string password = "";
+
+    // TODO: get client
+    IUserService service = new HttpUserService(new HttpClient());
+
+    private void SendLoginRequest()
+    {
+        service.AddUserAsync(_userDto = new AuthUserDto(username, password));
+    }
+    
+
+}
