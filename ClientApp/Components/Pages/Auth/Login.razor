@@ -1,33 +1,45 @@
 @page "/login"
-@using ClientApp.Services.User
+@inject AuthenticationStateProvider AuthenticationProvider
+@inject NavigationManager NavManager
+@using ClientApp.Services.Auth
 @using DTOs
 @rendermode InteractiveServer
 
 <PageTitle>Login</PageTitle>
 
 <p>Username:</p>
-<input class="username-field" @bind="username">
+<input class="username-field" @bind="@username">
 
 <p>Password:</p>
-<input class="password-field" @bind="password">
+<input class="password-field" @bind="@password">
 
+<p class="text-bg-warning">@errorLabel</p>
 <br/>
 
 <button class="btn btn-outline-primary" @onclick="SendLoginRequest">Log in</button>
 
-<a class="link-underline" href="register">Register here</a>
+<a class="link-underline" @onclick="@(()=> NavManager.NavigateTo("/register"))" >Register here</a>
 @code{
     
     private AuthUserDto _userDto;
     private string username = "";
     private string password = "";
+    private string errorLabel = "";
 
-    // TODO: get client
-    IUserService service = new HttpUserService(new HttpClient());
 
-    private void SendLoginRequest()
+    private async Task SendLoginRequest()
     {
-        service.AddUserAsync(_userDto = new AuthUserDto(username, password));
+        errorLabel = "";
+        try
+        {
+            await ((AuthProvider)AuthenticationProvider).Login(username, password);
+            NavManager.NavigateTo("/Posts");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            errorLabel = $"Error: {e.Message}";
+        }
     }
     
 

@@ -18,7 +18,7 @@ public class CommentsController(ICommentRepository commentRepository, IUserRepos
         try
         { 
             Comment created = await commentRepository.AddAsync(request.Body, request.PostId, request.UserId);
-            User user = await userRepository.GetSingleAsync(created.UserId);
+            User? user = await userRepository.GetSingleAsync(created.UserId);
             CommentDto dto = new CommentDto(created.Id, created.Body,
                 created.PostId, created.UserId, user.Username);
 

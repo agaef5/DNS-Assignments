@@ -54,6 +54,10 @@
               "version": "[10.0.0, )",
               "autoReferenced": true
             },
+            "Microsoft.AspNetCore.Authorization": {
+              "target": "Package",
+              "version": "[10.0.0, )"
+            },
             "SuperSimpleBlazorModal": {
               "target": "Package",
               "version": "[1.3.0, )"

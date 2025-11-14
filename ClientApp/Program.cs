@@ -1,7 +1,9 @@
 using ClientApp.Components;
+using ClientApp.Services.Auth;
 using ClientApp.Services.Comment;
 using ClientApp.Services.Post;
 using ClientApp.Services.User;
+using Microsoft.AspNetCore.Components.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +15,9 @@ builder.Services.AddScoped(sp => new HttpClient
     BaseAddress = new Uri("http://localhost:5213")
 });
 
-builder.Services.AddScoped<IPostService, HttpPostService>();
+builder.Services.AddScoped<AuthenticationStateProvider, AuthProvider>();
 builder.Services.AddScoped<IUserService, HttpUserService>();
+builder.Services.AddScoped<IPostService, HttpPostService>();
 builder.Services.AddScoped<ICommentService, HttpCommentService>();  
 
 var app = builder.Build();

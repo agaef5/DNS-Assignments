@@ -1,14 +1,14 @@
 @using Components
 @using DTOs.Comments
 
-<div class="flex-column justify-content-around">
-    <div>
-        <div class="py-2">
-            @Body
+<div class="flex-column justify-content-around border-dark-subtle rounded-1">
+    <div class="py-2">
+        <div class="">
+            @Username
         </div>
+        <h2>@Title</h2>
     </div>
-    <h2>@Title</h2>
-    <p class="">@Username</p>
+    <p class="">@Body</p>
 </div>
 
 @code {
@@ -26,8 +26,5 @@
     
     [Parameter]
     public required string Body { get; set; }
-    
-    [Parameter]
-    public required List<CommentDto> CommentDtos { get; set; }
     
 } 

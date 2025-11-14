@@ -1,23 +1,11 @@
+@using ClientApp.Services.Auth
+@inject AuthenticationStateProvider AuthenticationProvider
+@rendermode InteractiveServer
 
-<h3>Comment</h3>
-
-<div class="border-2 border-dark-subtle flex-column">
+<div class="border-2 border-dark flex-column py-2">
+    <p class="">@Username</p>
     
-    <p @bind="Username" class="text-light"></p>
-    
-    <p @bind="Body" class=""></p>
-    
-    
-    @* @if (UserId != AuthUserId) *@
-    @* { *@
-    @*     <div> *@
-    @*         <button class="btn-primary" @bind="ShowReplyToComment" @onclick="ReplyToComment">Reply to comment</button> *@
-    @*      *@
-    @*         <p class="">Reply to {Username}'s comment:</p> *@
-    @*         <textarea @bind=""></textarea> *@
-    @*     </div> *@
-    @* *@
-    @* }  *@
+    <p class="">@Body</p>
 </div>
 
 @code {
@@ -33,17 +21,4 @@
     [Parameter]
     public string? Body { get; set; }
     
-    // public int AuthUserId { get; set; }
-
-    // private bool ShowReplyToComment { get; set; } = false;
-    
-    // private void ReplyToComment()
-    // {
-    //     
-    // }
-    //
-    // private void CreateNewCommentRequest()
-    // {
-    //     
-    // }
 }

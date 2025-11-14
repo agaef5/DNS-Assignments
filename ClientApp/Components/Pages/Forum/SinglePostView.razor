@@ -1,7 +1,9 @@
+@using ClientApp.Services.Auth
 @using ClientApp.Services.Comment
 @using ClientApp.Services.Post
 @using DTOs.Comments
 @using DTOs.Posts
+@inject AuthenticationStateProvider AuthenticationProvider
 @inject IPostService PostService;
 @inject ICommentService CommentService;
 @page "/posts/{Id:int}"
@@ -16,34 +18,37 @@
 else
 {
     <div>
-        <Post PostId="Id" UserId="@PostDto.UserId"/>
+        <Post PostId="Id" UserId="@PostDto.UserId" Username="@PostDto.Username" Title="@PostDto.Title" Body="@PostDto.Body"/>
 
-        <div class="flex-column row border-dark-subtle">
-            <InputText @bind="NewComment"></InputText>
-            <button class="w-25" @onclick="CreateNewComment">Comment</button>
-        </div>
+        <AuthorizeView>
+            <NotAuthorized>
+                <div class="flex-column row border-dark-subtle">
+                    <InputText @bind-Value="NewComment"></InputText>
+                    <button class="w-25" @onclick="CreateNewComment">Comment</button>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
 
-        @foreach (var comment in CommentDtos)
+
+        @foreach (CommentDto comment in CommentDtos)
         {
-            <Comment CommentId="@comment.Id" UserId="comment.UserId"
+            <Comment CommentId="@comment.Id" UserId="@comment.UserId"
                      Username="@comment.Username" Body="@comment.Body"/>
         }
     </div> 
 }
 
-
-
 @code {
     [Parameter] public int Id { get; set; }
 
     private PostDto? PostDto { get; set; }
-    private List<CommentDto>? CommentDtos { get; set; } = new();
+    private List<CommentDto>? CommentDtos { get; set; }
     private string NewComment { get; set; } = "";
 
     protected override async Task OnParametersSetAsync()
     {
         PostDto = await PostService.GetPostByIdAsync(Id);
-        CommentDtos = PostDto.Comments;
+        CommentDtos = PostDto?.Comments ?? new List<CommentDto>();
     }
 
     private async Task CreateNewComment()
@@ -51,7 +56,11 @@ else
         if (string.IsNullOrWhiteSpace(NewComment))
             return;
 
-        var newCommentDto = new CreateCommentDto(NewComment, Id, 1);
+        var authenticationState = await AuthenticationProvider.GetAuthenticationStateAsync();
+        var user = authenticationState.User;
+        int userId = Convert.ToInt32(user.FindFirst("Id")); 
+
+        var newCommentDto = new CreateCommentDto(NewComment, Id, userId);
         
         CommentDto created = await CommentService.CreateCommentAsync(newCommentDto);
 
