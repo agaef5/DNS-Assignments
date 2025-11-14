@@ -1,6 +1,23 @@
-@WebAPI_HostAddress = http://localhost:7005
+@WebAPI_HostAddress = http://localhost:5213
 
 GET {{WebAPI_HostAddress}}/DNPAssignment/
 Accept: application/json
 
 ###
+
+POST {{WebAPI_HostAddress}}/Auth/register
+Content-Type: application/json
+
+{
+  "username": "aga",
+  "password": "secret123"
+}
+###
+
+POST {{WebAPI_HostAddress}}/Auth/register
+Content-Type: application/json
+
+{
+  "username": "mochi",
+  "password": "secretly"
+}

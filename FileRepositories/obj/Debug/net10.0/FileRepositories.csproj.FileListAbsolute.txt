@@ -16,3 +16,5 @@ C:\Users\agafu\RiderProjects\DNPCourseAssignment\FileRepositories\obj\Debug\net1
 C:\Users\agafu\RiderProjects\DNPCourseAssignment\FileRepositories\obj\Debug\net10.0\refint\FileRepositories.dll
 C:\Users\agafu\RiderProjects\DNPCourseAssignment\FileRepositories\obj\Debug\net10.0\FileRepositories.pdb
 C:\Users\agafu\RiderProjects\DNPCourseAssignment\FileRepositories\obj\Debug\net10.0\ref\FileRepositories.dll
+C:\Users\agafu\RiderProjects\DNPCourseAssignment\FileRepositories\bin\Debug\net10.0\DTOs.dll
+C:\Users\agafu\RiderProjects\DNPCourseAssignment\FileRepositories\bin\Debug\net10.0\DTOs.pdb

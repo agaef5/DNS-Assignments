@@ -51,11 +51,20 @@ public class UserFileRepository : IUserRepository
         await WriteUsersAsync(users);
     }
 
-    public async Task<User> GetSingleAsync(int id)
+    public async Task<User?> GetSingleAsync(int id)
     {
         List<User> users =  await GetMany();
 
-        User existingUser = GetUser(users, id);
+        User? existingUser = GetUser(users, id);
+
+        return existingUser;
+    }
+
+    public async Task<User?> GetSingleAsync(string username)
+    {
+        List<User> users =  await GetMany();
+
+        User? existingUser = GetUser(users, username);
 
         return existingUser;
     }
@@ -66,11 +75,19 @@ public class UserFileRepository : IUserRepository
         return users;
     }
     
-    private static User GetUser(List<User> users, int? id)
+    private static User GetUser(List<User> users, int id)
     {
-        var user = users.SingleOrDefault(p => p.Id == id);
-        return user ?? throw new InvalidOperationException($"User with ID '{id}' not found");
+            var user = users.SingleOrDefault(p => p.Id == id);
+            return user ?? throw new InvalidOperationException($"User with ID '{id}' not found");
+        
     }
+
+    private static User? GetUser(List<User> users, string username)
+    {
+        var user = users.SingleOrDefault(p => p.Username.Equals(username));
+        return user; 
+    }
+    
     
     private async Task<List<User>> ReadUsersAsync()
     {

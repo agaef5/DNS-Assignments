@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "s/HUx4Q0feM=",
+  "dgSpecHash": "LtlI9lnTYD8=",
   "success": true,
   "projectFilePath": "C:\\Users\\agafu\\RiderProjects\\DNPCourseAssignment\\ClientApp\\ClientApp.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\agafu\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.0-rc.1.25451.107\\microsoft.aspnetcore.app.internal.assets.10.0.0-rc.1.25451.107.nupkg.sha512"
+    "C:\\Users\\agafu\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.0\\microsoft.aspnetcore.app.internal.assets.10.0.0.nupkg.sha512",
+    "C:\\Users\\agafu\\.nuget\\packages\\supersimpleblazormodal\\1.3.0\\supersimpleblazormodal.1.3.0.nupkg.sha512"
   ],
   "logs": []
 }
