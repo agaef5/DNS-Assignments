@@ -14,16 +14,11 @@ public class Post
     //for EFC
     private Post(){}
 
-    public Post(int id, string title, string body, int userId)
+    public Post( string title, string body, int userId)
     {
-        this.Id = id;
         this.Title = title;
         this.Body = body;
         this.UserId = userId;
-    }
-    public static Post ToEntity(PostDto dto)
-    {
-        return new Post(dto.Id, dto.Title, dto.Body, dto.UserId);
     }
 
     public static PostDto ToDto(Post post, string username, List<CommentDto> comments)

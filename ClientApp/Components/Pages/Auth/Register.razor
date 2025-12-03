@@ -34,7 +34,7 @@
         errorLabel = "";
         try
         {
-            await ((AuthProvider)AuthenticationProvider).Login(username, password);
+            await ((AuthProvider)AuthenticationProvider).Register(username, password);
             NavManager.NavigateTo("/Posts");
         }
         catch (Exception e)

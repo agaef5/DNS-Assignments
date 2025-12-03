@@ -12,20 +12,14 @@ namespace Entities
         public User User { get; set; }
 
 
-        public Comment(int id, string body, int postId, int userId)
+        public Comment( string body, int postId, int userId)
         {
-            this.Id = id;
             this.Body = body;
             this.PostId = postId;
             this.UserId = userId;
         }
         
         private Comment(){} //for EFC
-        
-        public static Comment ToEntity(CommentDto dto )
-        {
-            return new Comment(dto.Id, dto.Body, dto.PostId, dto.UserId);
-        }
 
         public static CommentDto ToDto(Comment comment)
         {

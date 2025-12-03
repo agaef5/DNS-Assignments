@@ -11,6 +11,8 @@ public class ForumContext : DbContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-                optionsBuilder.UseSqlite("Data Source=forum.db");
+                var path = @"C:\Users\agafu\RiderProjects\DNPCourseAssignment\EfcRepositories\forum.db";
+                Console.WriteLine($"Using DB at: {path}");
+                optionsBuilder.UseSqlite($"Data Source={path}");
         }
 }
