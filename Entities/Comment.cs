@@ -2,12 +2,25 @@ using DTOs.Comments;
 
 namespace Entities
 {
-    public class Comment(int id, string body, int postId, int userId)
+    public class Comment
     {
-        public int Id { get; set; } = id;
-        public string Body { get; set; } = body;
-        public int PostId { get; set; } = postId;
-        public int UserId { get; set; } = userId;
+        public int Id { get; set; }
+        public string Body { get; set; }
+        public int PostId { get; set; }
+        public Post Post { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
+
+
+        public Comment(int id, string body, int postId, int userId)
+        {
+            this.Id = id;
+            this.Body = body;
+            this.PostId = postId;
+            this.UserId = userId;
+        }
+        
+        private Comment(){} //for EFC
         
         public static Comment ToEntity(CommentDto dto )
         {

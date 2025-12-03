@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EfcRepositories;
 
-public class AppContext : DbContext
+public class ForumContext : DbContext
 {
         public DbSet<Post> Posts => Set<Post>();
         public DbSet<User> Users => Set<User>();
@@ -11,6 +11,6 @@ public class AppContext : DbContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-                optionsBuilder.UseSqlite("Data Source=app.db");
+                optionsBuilder.UseSqlite("Data Source=forum.db");
         }
 }
